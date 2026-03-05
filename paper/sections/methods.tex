@@ -1,0 +1,65 @@
+\section{Methods}
+
+\subsection{Dataset}
+
+We use the \textsc{real-slop} corpus \citep{solenopsisbot2025realslop}, a publicly available collection of 155,623 multi-turn interactions with various LLMs, released under the MIT license. The dataset includes user messages, model responses, reasoning traces (where available), and model identifiers spanning 104 distinct model variants across 12 families.
+
+Reasoning traces---the internal chain-of-thought text produced before the final response---are available for 11,366 interactions (7.3\% of the total). Availability varies substantially by model family: nearly all Minimax (99.4\%) and GLM (96.2\%) interactions include reasoning, while Claude Opus (5.3\%) and GPT (2.2\%) have lower coverage. After deduplication on (messages, model, response) triples and filtering to rows with non-null reasoning, our analytical sample contains 9,923 interactions yielding 208,156 sentences.
+
+\input{tables/tab_dataset_overview}
+
+\subsection{Uncertainty Taxonomy}
+
+We develop a six-category uncertainty taxonomy grounded in the linguistics of hedging \citep{hyland1998hedging, holmes1988doubt}, adapted for the domain of LLM reasoning traces. Table~\ref{tab:taxonomy} defines each category with examples.
+
+\begin{table}[t]
+\centering
+\caption{Six-category uncertainty taxonomy for LLM reasoning traces.}
+\label{tab:taxonomy}
+\small
+\begin{tabular}{lll}
+\toprule
+Category & Description & Examples \\
+\midrule
+Epistemic hedge & Subjective belief markers & \emph{I think, perhaps, maybe} \\
+Evidential marker & Source/evidence qualifiers & \emph{it seems, apparently} \\
+Explicit uncertainty & Direct admission of not knowing & \emph{I'm not sure, I may be wrong} \\
+Probability language & Probabilistic terms & \emph{likely, probably, possibly} \\
+Modal hedge & Possibility modals & \emph{might, could} (as auxiliaries) \\
+Approximator & Imprecision markers & \emph{approximately, roughly, about $N$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Detection Pipeline}
+
+Each reasoning trace is processed through spaCy \citep{honnibal2020spacy} for sentence tokenization and part-of-speech tagging. Uncertainty detection uses a combination of regular expression patterns and POS-aware rules:
+
+\begin{itemize}
+    \item For unambiguous categories (epistemic hedges, evidential markers, explicit uncertainty, probability language), we use compiled regex patterns matched against sentence text.
+    \item For \emph{modal hedges}, we verify that ``might'' and ``could'' carry the auxiliary POS tag (\texttt{AUX}), filtering out non-modal uses (e.g., ``could'' as past tense of ``can'' in narrative).
+    \item For \emph{approximators}, the word ``about'' is only counted when followed by a numeric token, distinguishing ``about 50\%'' (approximator) from ``about this topic'' (preposition).
+\end{itemize}
+
+Each sentence receives a binary uncertainty flag (any marker present), a marker count, and per-category counts.
+
+\subsection{Lexicon Validation}
+\label{sec:validation}
+
+To validate the lexical approach, we sampled 2,500 sentences stratified by position decile (250 per decile) and classified each using a local LLM (Qwen 2.5 7B via Ollama) with a structured JSON prompt. The LLM independently assessed uncertainty presence, type, and confidence for each sentence. Inter-method agreement was measured using Cohen's $\kappa$ \citep{cohen1960coefficient}.
+
+\input{tables/tab_lexicon_validation}
+
+\subsection{Positional Analysis}
+
+To analyze how uncertainty varies across reasoning positions, we normalize each sentence's position within its trace to a 0--1 scale and assign it to one of ten position deciles. This controls for variation in reasoning length across interactions. We report uncertainty rates (proportion of sentences with any marker) per decile, both overall and stratified by uncertainty category, model family, and NSFW content flag.
+
+We fit a mixed-effects linear model \citep{seabold2010statsmodels} with uncertainty presence (binary) as the dependent variable, fixed effects for normalized position (linear and quadratic terms), log reasoning length, NSFW flag, and model family, with random intercepts per interaction.
+
+\subsection{Confidence Filtering}
+
+For each interaction with both a reasoning trace and a final response ($n = 9{,}611$), we compute the uncertainty rate in each text separately. The \emph{filtering ratio} is defined as:
+\[
+\text{Filtering ratio} = \frac{r_{\text{reasoning}} - r_{\text{response}}}{r_{\text{reasoning}}}
+\]
+where $r$ denotes the uncertainty rate. A positive ratio indicates that uncertainty is reduced in the response; a ratio of 1.0 means complete suppression. We use Wilcoxon signed-rank tests (one-sided) to assess whether reasoning uncertainty significantly exceeds response uncertainty, both overall and per category.

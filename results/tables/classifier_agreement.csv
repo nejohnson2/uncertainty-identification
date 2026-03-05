@@ -1,0 +1,5 @@
+metric,value
+cohens_kappa,0.665671433513677
+llm_positive_rate,0.0652
+lexical_positive_rate,0.0516
+n_samples,2500.0

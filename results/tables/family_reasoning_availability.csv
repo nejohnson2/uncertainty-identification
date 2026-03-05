@@ -1,0 +1,12 @@
+model_family,total,with_reasoning,pct_reasoning
+claude-opus,55330,2923,5.3
+gpt,29407,659,2.2
+gemini,28966,1596,5.5
+claude-sonnet,14028,91,0.6
+kimi,13278,0,0.0
+claude-haiku,5373,1,0.0
+glm,3381,3252,96.2
+deepseek,2012,933,46.4
+minimax,1441,1432,99.4
+other,1332,394,29.6
+qwen,1075,85,7.9

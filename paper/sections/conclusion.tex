@@ -1,0 +1,7 @@
+\section{Conclusion}
+
+We presented a systematic analysis of uncertainty dynamics in LLM reasoning chains, examining 208,156 sentences from 9,923 interactions across 12 model families. Three main findings emerge: (1) uncertainty follows an inverted-U trajectory, peaking mid-chain and declining toward conclusions, consistent with explore--commit dynamics; (2) this positional pattern is remarkably consistent across model families despite large differences in overall magnitude; and (3) substantial confidence filtering occurs between reasoning and response, with epistemic hedges most aggressively suppressed.
+
+These findings suggest that LLM reasoning traces contain rich signals about model uncertainty that are largely invisible in final outputs. Future work could explore whether exposing or preserving these signals improves calibration, whether the inverted-U pattern holds across languages and reasoning domains, and whether the filtering mechanism can be modulated to produce more appropriately hedged responses. Longitudinal analysis of how these patterns evolve across model generations would also be informative.
+
+The code and analysis pipeline for reproducing these results are available at \url{https://github.com/example/uncertainty-identification}.

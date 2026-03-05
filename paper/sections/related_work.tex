@@ -1,0 +1,13 @@
+\section{Related Work}
+
+\paragraph{LLM uncertainty and calibration.}
+A growing body of work examines whether LLMs can accurately express their own uncertainty. \citet{kadavath2022language} showed that models have partial self-knowledge of their correctness, while \citet{lin2022teaching} explored training models to verbalize confidence levels. \citet{tian2023just} demonstrated that prompting strategies can elicit better-calibrated confidence scores. \citet{xiong2024llms} provided a comprehensive evaluation of confidence elicitation methods, finding that model-expressed confidence often diverges from actual accuracy. Our work complements this line by studying uncertainty as it \emph{naturally occurs} in reasoning traces, rather than in response to calibration prompts.
+
+\paragraph{Overconfidence in language models.}
+\citet{mielke2022reducing} identified systematic overconfidence in conversational agents and proposed linguistic calibration techniques. \citet{zhou2024relying} examined the downstream consequences of LLMs' reluctance to express uncertainty, showing that users may be misled by confident-sounding outputs. Our confidence filtering analysis directly quantifies one mechanism behind this phenomenon: the systematic suppression of hedging language between internal reasoning and external response.
+
+\paragraph{Chain-of-thought analysis.}
+Since \citet{wei2022chain} demonstrated that chain-of-thought prompting improves reasoning, most work has focused on CoT as a performance technique rather than an object of linguistic study. \citet{kojima2022large} showed that even zero-shot CoT prompting is effective, suggesting that reasoning-like text generation is a robust model behavior. However, little work has examined the \emph{content} of reasoning traces---their linguistic properties, rhetorical structure, or uncertainty patterns. Our positional analysis addresses this gap by treating the reasoning chain as a discourse with analyzable internal structure.
+
+\paragraph{Hedging and uncertainty in language.}
+The linguistic study of hedging has a long history. \citet{hyland1998hedging} developed a comprehensive taxonomy of hedging devices in academic writing, distinguishing epistemic hedges, evidential markers, and approximators. \citet{holmes1988doubt} examined expressions of doubt and certainty in educational materials. We adapt these established categories to the novel domain of LLM reasoning traces, creating a six-category taxonomy that bridges computational and linguistic approaches to uncertainty detection.

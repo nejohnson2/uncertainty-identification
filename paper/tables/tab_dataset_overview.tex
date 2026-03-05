@@ -1,0 +1,35 @@
+\begin{table}[t]
+\centering
+\caption{Dataset overview. The \textsc{real-slop} corpus contains multi-model interactions; only rows with non-null reasoning traces are used for analysis.}
+\label{tab:dataset}
+\small
+\begin{tabular}{lr}
+\toprule
+Statistic & Value \\
+\midrule
+Total interactions & 155{,}623 \\
+With reasoning traces & 11{,}366 (7.3\%) \\
+With response & 149{,}005 \\
+With both reasoning \& response & 10{,}961 \\
+Unique models & 104 \\
+Reasoning length (median) & 646 chars \\
+Reasoning length (95th pct) & 5{,}008 chars \\
+\midrule
+\multicolumn{2}{l}{\textit{Reasoning availability by model family}} \\
+\midrule
+Family & With reasoning (\%) \\
+\midrule
+minimax & 1{,}432 (99.4\%) \\
+glm & 3{,}252 (96.2\%) \\
+deepseek & 933 (46.4\%) \\
+other & 394 (29.6\%) \\
+qwen & 85 (7.9\%) \\
+gemini & 1{,}596 (5.5\%) \\
+claude-opus & 2{,}923 (5.3\%) \\
+gpt & 659 (2.2\%) \\
+claude-sonnet & 91 (0.6\%) \\
+kimi & 0 (0.0\%) \\
+claude-haiku & 1 (0.0\%) \\
+\bottomrule
+\end{tabular}
+\end{table}

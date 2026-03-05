@@ -1,0 +1,40 @@
+sentence,position_decile,lexical_uncertain,llm_uncertain,llm_type,llm_confidence,agree
+"I'm trying to deduce the user's state from these actions, focusing on the body language.",1,false,true,"",low,false
+"Анализ⠀стиля⠀(примерный,⠀без⠀конкретного⠀источника,⠀но⠀в⠀духе⠀запроса):
+*Стиль:*⠀Рубленые⠀фразы.⠀Акцент⠀на⠀деталях⠀быта.⠀Цинизм.
+",1,false,true,approximator,medium,false
+Or is it a running *joke*?,1,false,true,"",low,false
+Ghost doesn't know this.,1,false,true,"",low,false
+"user said ""This is the image"" but I don't actually see any image attached to the message.",1,false,true,epistemic_hedge,high,false
+"Since I can't see the cards yet, I should choose a moderate bet size.",2,false,true,epistemic_hedge,medium,false
+**,2,false,true,epistemic_hedge,high,false
+**,2,false,true,epistemic_hedge,high,false
+"Его досье уже помечено как высокорисковое, но новое сообщение ""а ьять"" выглядит странно даже для него.",2,false,true,"",low,false
+"It fits the ""stuck in Cape Suzette"" vibe perfectly, even if the name is different.
+
+",2,false,true,evidential_marker,medium,false
+"So Celia will use third-person about herself, but it's ""Celia"" narrator?",2,false,true,"",low,false
+"Olası çözüm yolları:
+1.  ",2,false,true,"",low,false
+"This is a bit confusing.
+
+",2,false,true,"",low,false
+"Dealer showing: 7♦
+Bet: $10
+Can double: false
+Can split: false
+
+Wait, I need to think about this hand more carefully.",2,false,true,epistemic_hedge,high,false
+"В руках недавно держал новый глок; сейчас мог отложить его обратно в кейс или держать рядом.
+",2,false,true,modal_hedge,medium,false
+"Kullanıcı “admin bota” dediği için telegram mesajı kastediyor olabilir; telegramda kırmızı yapamayız, en yakın 🔴 ADMIN veya 🟥 ADMIN.
+",2,false,true,epistemic_hedge,medium,false
+"[text] ..."".",2,false,true,epistemic_hedge,high,false
+"The regular `sandbox_create` tool also creates sandboxes that may not be deleted
+
+I need to:
+",2,false,true,modal_hedge,medium,false
+I'm kind of guilty also finding it funny and commenting but still...,2,false,true,epistemic_hedge,medium,false
+"The task doesn't specify, but we can include the content in the result.
+
+   - But note: the task says ""çıktıyı kaydet"" (save the output).",3,false,true,epistemic_hedge,medium,false

@@ -1,0 +1,17 @@
+\section{Introduction}
+
+Chain-of-thought (CoT) reasoning has become a central capability of modern large language models (LLMs), enabling step-by-step problem solving that improves performance on complex tasks \citep{wei2022chain, kojima2022large}. While the final outputs of LLMs have been extensively studied for calibration and confidence \citep{kadavath2022language, tian2023just}, the \emph{internal reasoning process} remains largely opaque. In particular, we know little about how uncertainty is expressed during reasoning, how it evolves across the chain, and whether it is filtered before the model produces its final answer.
+
+This gap matters for several reasons. First, understanding uncertainty dynamics within reasoning traces can reveal how LLMs negotiate between competing hypotheses---a process invisible in final responses. Second, if models systematically suppress uncertainty markers between reasoning and response, this ``confidence filtering'' may contribute to the overconfidence widely observed in LLM outputs \citep{mielke2022reducing, zhou2024relying}. Third, the positional distribution of uncertainty within reasoning chains may illuminate the cognitive-like structure of LLM deliberation: whether models explore alternatives early, commit to conclusions gradually, or vacillate throughout.
+
+We address three research questions:
+
+\begin{enumerate}
+    \item[\textbf{RQ1}] \textbf{Positional distribution:} How is uncertainty distributed across positions in reasoning chains? Is it concentrated at particular stages of the reasoning process?
+    \item[\textbf{RQ2}] \textbf{Cross-model variation:} Do different model families differ systematically in their reasoning-stage uncertainty patterns?
+    \item[\textbf{RQ3}] \textbf{Confidence filtering:} Does uncertainty present in reasoning traces get suppressed in the final response? Which types of uncertainty survive?
+\end{enumerate}
+
+To investigate these questions, we analyze the \textsc{real-slop} corpus \citep{solenopsisbot2025realslop}, a large collection of 155,623 real-world interactions spanning 104 model variants across 12 families, of which 11,366 include reasoning traces. We develop a six-category uncertainty taxonomy grounded in the linguistics of hedging \citep{hyland1998hedging, holmes1988doubt} and implement it as a spaCy-based detection pipeline with POS-aware pattern matching. We validate this lexical approach against a local LLM classifier, achieving substantial inter-method agreement (Cohen's $\kappa = 0.67$).
+
+Our main findings are: (1) uncertainty follows an inverted-U trajectory, peaking at position decile 3 (6.9\%) and declining toward conclusions (4.3\%); (2) model families show broadly similar positional patterns, though some (e.g., Minimax, Qwen) exhibit substantially higher overall uncertainty rates; and (3) significant confidence filtering occurs between reasoning and response, with overall uncertainty dropping by more than half ($p < 10^{-165}$), driven primarily by the suppression of epistemic hedges and modal hedges.

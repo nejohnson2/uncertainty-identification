@@ -1,0 +1,26 @@
+\begin{table}[t]
+\centering
+\caption{Lexicon validation against LLM classifier (Qwen 2.5 7B). Cohen's $\kappa$ indicates substantial agreement. Per-category detection rates are from the lexicon applied to 500 sampled reasoning traces.}
+\label{tab:validation}
+\small
+\begin{tabular}{lr}
+\toprule
+\multicolumn{2}{l}{\textit{Inter-method agreement} ($n$ = 2{,}500)} \\
+\midrule
+Cohen's $\kappa$ & 0.666 \\
+LLM positive rate & 6.5\% \\
+Lexical positive rate & 5.2\% \\
+\midrule
+\multicolumn{2}{l}{\textit{Lexicon category detection rates}} \\
+\midrule
+Category & \% of sentences \\
+\midrule
+Epistemic Hedge & 2.23\% ($n$=187) \\
+Evidential Marker & 0.08\% ($n$=7) \\
+Explicit Uncertainty & 0.06\% ($n$=5) \\
+Probability Language & 1.01\% ($n$=85) \\
+Modal Hedge & 2.22\% ($n$=186) \\
+Approximator & 0.30\% ($n$=25) \\
+\bottomrule
+\end{tabular}
+\end{table}

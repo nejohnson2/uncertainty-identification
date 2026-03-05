@@ -1,0 +1,8 @@
+\begin{abstract}
+Large language models increasingly use chain-of-thought reasoning, yet little is known about how uncertainty is expressed \emph{within} these internal reasoning traces---or whether it survives into the final response.
+We analyze 11,366 reasoning traces from 104 models across 12 families in the \textsc{real-slop} corpus, extracting 208,156 sentences and classifying uncertainty markers using a six-category linguistic taxonomy validated against a local LLM classifier (Cohen's $\kappa = 0.67$).
+We find that uncertainty follows an inverted-U trajectory across reasoning chains: low at the outset (2.4\%), peaking mid-chain (6.9\% at decile 3), then declining toward conclusions (4.3\%).
+A mixed-effects model confirms significant linear and quadratic position effects ($p < .001$).
+Comparing reasoning traces to final responses, we observe substantial \emph{confidence filtering}: overall uncertainty drops from 3.8\% to 1.7\% ($p < 10^{-165}$, Wilcoxon signed-rank), with epistemic hedges showing the strongest suppression.
+These findings suggest that LLMs systematically explore and then resolve uncertainty during reasoning, but suppress residual hedging before responding.
+\end{abstract}

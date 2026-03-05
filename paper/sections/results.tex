@@ -1,0 +1,75 @@
+\section{Results}
+
+\subsection{Positional Distribution of Uncertainty (RQ1)}
+
+Uncertainty expression follows a clear inverted-U trajectory across reasoning chain positions (Figure~\ref{fig:positional}, Table~\ref{tab:deciles}). The rate is lowest at the beginning of the chain (2.4\% in decile 1), rises sharply to a peak at decile 3 (6.9\%), then gradually declines toward the conclusion (4.3\% in decile 10). This pattern is consistent across all six uncertainty categories, though with different magnitudes.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig1_uncertainty_density.pdf}
+  \caption{Uncertainty expression rate across reasoning chain position deciles. The inverted-U pattern peaks at decile 3 and declines toward conclusions.}
+  \label{fig:positional}
+\end{figure}
+
+\input{tables/tab_positional_deciles}
+
+Modal hedges and epistemic hedges are the dominant categories throughout, each appearing in approximately 2--3\% of mid-chain sentences. Probability language contributes roughly 1\%, while evidential markers, explicit uncertainty, and approximators are rarer ($< 0.3\%$ each). Figure~\ref{fig:categories} shows the category-specific positional curves.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig2_category_by_position.pdf}
+  \caption{Uncertainty categories across reasoning position. Modal hedges and epistemic hedges dominate; all categories follow the inverted-U pattern.}
+  \label{fig:categories}
+\end{figure}
+
+The low initial rate (decile 1) likely reflects that reasoning chains often begin with task restatement or setup, which involves less deliberation. The mid-chain peak corresponds to the evaluative phase where the model considers alternatives, weighs evidence, and entertains competing hypotheses. The late-chain decline suggests a commitment phase where the model converges on an answer and reduces hedging.
+
+\subsection{Cross-Model Comparison (RQ2)}
+
+Model families exhibit broadly similar inverted-U positional patterns, but differ substantially in overall uncertainty magnitude (Table~\ref{tab:families}, Figure~\ref{fig:models}).
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig4_model_comparison.pdf}
+  \caption{Uncertainty rate by position decile across model families. All families show the inverted-U pattern, but at different magnitudes.}
+  \label{fig:models}
+\end{figure}
+
+\input{tables/tab_model_families}
+
+Some families (e.g., Minimax, Qwen) display notably higher uncertainty rates, exceeding 15\% in peak deciles. In contrast, major families like Claude Opus, GPT, and Gemini show lower overall rates (3--5\% at peak). Despite these magnitude differences, the \emph{shape} of the positional curve is remarkably consistent: all families peak in deciles 2--5 and decline thereafter. The mixed-effects model (Section~\ref{sec:regression}) confirms that model family dummies are not statistically significant predictors of uncertainty when controlling for position and other covariates ($p > .05$ for all families).
+
+\subsection{Confidence Filtering (RQ3)}
+
+\input{tables/tab_confidence_filtering}
+
+We observe substantial confidence filtering between reasoning traces and final responses (Table~\ref{tab:filtering}). Overall, the uncertainty rate drops from 3.8\% in reasoning to 1.7\% in responses, a reduction of more than half ($W = 4{,}397{,}479$, $p < 10^{-165}$, Wilcoxon signed-rank).
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig3_confidence_filtering.pdf}
+  \caption{Uncertainty rates in reasoning traces versus final responses (paired comparison). All categories except approximators show significant reduction.}
+  \label{fig:filtering}
+\end{figure}
+
+The filtering effect varies by uncertainty category. Epistemic hedges show the strongest suppression, dropping from 1.34\% to 0.20\% ($p < 10^{-189}$). Modal hedges are reduced from 1.47\% to 0.63\% ($p < 10^{-66}$). Probability language drops from 0.87\% to 0.34\% ($p < 10^{-73}$). Explicit uncertainty, already rare, is further suppressed from 0.08\% to 0.02\% ($p < 10^{-10}$). Evidential markers show modest reduction ($p = .014$).
+
+Notably, \emph{approximators} are the exception: they slightly \emph{increase} from 0.21\% in reasoning to 0.42\% in responses ($p = .062$, not significant). This is consistent with the idea that approximators serve a communicative function in final answers (``about 50 results'') rather than reflecting deliberative uncertainty.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig5_filtering_distribution.pdf}
+  \caption{Distribution of per-interaction filtering ratios. Positive values indicate uncertainty reduction from reasoning to response.}
+  \label{fig:filtering_dist}
+\end{figure}
+
+\subsection{Regression Results}
+\label{sec:regression}
+
+The mixed-effects model confirms the positional pattern and identifies additional predictors (Table~\ref{tab:regression}).
+
+\input{tables/tab_mixed_effects}
+
+The significant positive coefficient for normalized position ($\beta = 0.137$, $p < .001$) combined with the significant negative quadratic term ($\beta = -0.132$, $p < .001$) formally establishes the inverted-U trajectory. Longer reasoning chains are associated with slightly higher uncertainty ($\beta = 0.005$, $p < .001$), and NSFW content shows elevated uncertainty ($\beta = 0.019$, $p < .001$). Model family effects are uniformly non-significant.
+
+For the filtering ratio model, log reasoning length is the sole significant predictor ($\beta = 0.118$, $p < .001$): longer reasoning chains show more aggressive confidence filtering, suggesting that extended deliberation leads to greater suppression of uncertainty in the final answer.

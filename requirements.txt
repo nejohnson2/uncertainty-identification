@@ -1,0 +1,27 @@
+# Data processing
+polars>=0.20
+pyarrow>=14.0
+datasets>=2.16
+
+# NLP
+spacy>=3.7
+
+# Topic modeling (cluster)
+bertopic>=0.16
+sentence-transformers>=2.2
+
+# Statistics
+statsmodels>=0.14
+scikit-learn>=1.4
+scipy>=1.12
+
+# Visualization
+matplotlib>=3.8
+seaborn>=0.13
+
+# LLM classifier
+anthropic>=0.40
+
+# Utilities
+tqdm>=4.66
+python-dotenv>=1.0
